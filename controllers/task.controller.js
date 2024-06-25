@@ -5,7 +5,7 @@ const userModel = require("../models/user.model");
 
 const allTasks = async (req, res) => {
   const tasks = await taskModel.find();
-  res.send("tasks");
+  return res.status(200).json({ data: tasks, total: tasks.length });
 };
 
 /* GET TASK BY ID */
@@ -93,7 +93,7 @@ const updateTask = async (req, res) => {
     return res.status(200).json({});
   } catch (error) {
     console.error("Error updating task:", error);
-    return res.status(500).json({ msg: "Error updating task" }); // Handle errors
+    return res.status(500).json({ msg: "Error updating task" });
   }
 };
 
